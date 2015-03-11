@@ -37,7 +37,7 @@ var mapboxSat = L.tileLayer("https://{s}.tiles.mapbox.com/v3/examples.map-qfyrx5
 /* Overlay Layers */
 var highlight = L.geoJson(null);
 
-var wodTrail = L.geoJson(null, {
+var custisTrail = L.geoJson(null, {
   style: function (feature) {
   	return {
   	  color: "#ff3135",
@@ -75,13 +75,13 @@ var wodTrail = L.geoJson(null, {
         }
       },
       mouseout: function (e) {
-        wodTrail.resetStyle(e.target);
+        custisTrail.resetStyle(e.target);
       }
     });
   }
 });
-$.getJSON("data/wod.geojson", function (data) {
-  wodTrail.addData(data);
+$.getJSON("data/custis.geojson", function (data) {
+  custisTrail.addData(data);
 });
 
 /* Single marker cluster layer to hold all clusters */
@@ -143,7 +143,7 @@ $.getJSON("data/pois.geojson", function (data) {
 map = L.map("map", {
   zoom: 10,
   center: [38.978868, -77.397463],
-  layers: [mapboxTer, wodTrail, markerClusters, highlight],
+  layers: [mapboxTer, custisTrail, markerClusters, highlight],
   zoomControl: false,
   attributionControl: false
 });
@@ -240,7 +240,7 @@ var groupedOverlays = {
     "<img src='assets/img/beer.png' width='24' height='28'>&nbsp;Places": poiLayer
   },
   "Reference": {
-    "W&amp;OD Trail": wodTrail
+    "Custis Trail": custisTrail
   }
 };
 
@@ -257,7 +257,7 @@ $("#searchbox").click(function () {
 $(document).one("ajaxStop", function () {
   $("#loading").hide();
   /* Fit map to trail bounds */
-  map.fitBounds(wodTrail.getBounds());
+  map.fitBounds(custisTrail.getBounds());
   featureList = new List("features", {valueNames: ["feature-name"]});
   featureList.sort("feature-name", {order:"asc"});
 
