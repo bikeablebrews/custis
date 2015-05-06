@@ -141,8 +141,8 @@ $.getJSON("data/pois.geojson", function (data) {
 });
 
 map = L.map("map", {
-  zoom: 10,
-  center: [38.978868, -77.397463],
+  zoom: 14,
+  center: [38.882056, -77.115886],
   layers: [mapboxTer, custisTrail, markerClusters, highlight],
   zoomControl: false,
   attributionControl: false
